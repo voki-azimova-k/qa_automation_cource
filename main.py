@@ -1,33 +1,11 @@
 import re
-
-
-def add(first, second=None):
-    if second is None:
-        result = 0
-        for number in first:
-            result += number
-        return result
-
-    return first + second
-
-
-def subtract(first, second):
-    return first - second
-
-
-def multiply(first, second):
-    return first * second
-
-
-def divide(first, second):
-    return first / second
-
+import basic_calc
 
 operations = {
-    "+": add,
-    "-": subtract,
-    "*": multiply,
-    "/": divide,
+    "+": basic_calc.BasicCalc.add,
+    "-": basic_calc.BasicCalc.subtract,
+    "*": basic_calc.BasicCalc.multiply,
+    "/": basic_calc.BasicCalc.divide,
 }
 
 pattern = r"\d+(\.\d+)?[+\-*/]\d+(\.\d+)?"
