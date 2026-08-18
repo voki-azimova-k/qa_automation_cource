@@ -45,7 +45,7 @@ class MemoryCalc(BasicCalc):
 
     def add(self, first, second=None):
         if second is None:
-            second = self.memory[-1]
+            second = self.memory_top
 
         first = validate_number(first)
         second = validate_number(second)
@@ -61,7 +61,7 @@ class MemoryCalc(BasicCalc):
 
     def subtract(self, first, second=None):
         if second is None:
-            second = self.memory[-1]
+            second = self.memory_top
 
         first = validate_number(first)
         second = validate_number(second)
@@ -77,7 +77,7 @@ class MemoryCalc(BasicCalc):
 
     def multiply(self, first, second=None):
         if second is None:
-            second = self.memory[-1]
+            second = self.memory_top
 
         first = validate_number(first)
         second = validate_number(second)
@@ -93,7 +93,7 @@ class MemoryCalc(BasicCalc):
 
     def divide(self, first, second=None):
         if second is None:
-            second = self.memory[-1]
+            second = self.memory_top
 
         first = validate_number(first)
         second = validate_number(second)
