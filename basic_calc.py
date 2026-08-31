@@ -1,4 +1,6 @@
 from calculator_exceptions import CalculatorZeroDivisionError
+from calculator_logger import log_operation, log_error
+
 
 def validate_number(value):
     if isinstance(value, (int, float)):
@@ -6,27 +8,37 @@ def validate_number(value):
 
     return 0
 
+
 class BasicCalc:
     @staticmethod
     def add(first, second):
         first = validate_number(first)
         second = validate_number(second)
 
-        return first + second
+        result = first + second
+        log_operation("add", [first, second], result)
+
+        return result
 
     @staticmethod
     def subtract(first, second):
         first = validate_number(first)
         second = validate_number(second)
 
-        return first - second
+        result = first - second
+        log_operation("subtract", [first, second], result)
+
+        return result
 
     @staticmethod
     def multiply(first, second):
         first = validate_number(first)
         second = validate_number(second)
 
-        return first * second
+        result = first * second
+        log_operation("multiply", [first, second], result)
+
+        return result
 
     @staticmethod
     def divide(first, second):
@@ -34,9 +46,14 @@ class BasicCalc:
         second = validate_number(second)
 
         if second == 0:
-            raise CalculatorZeroDivisionError
+            error = CalculatorZeroDivisionError("Division by zero")
+            log_error("divide", [first, second], error)
+            raise error
 
-        return first / second
+        result = first / second
+        log_operation("divide", [first, second], result)
+
+        return result
 
 
 class MemoryCalc(BasicCalc):
@@ -57,6 +74,8 @@ class MemoryCalc(BasicCalc):
         else:
             self.memory.append(result)
 
+        log_operation("add", [first, second], result)
+
         return result
 
     def subtract(self, first, second=None):
@@ -72,6 +91,8 @@ class MemoryCalc(BasicCalc):
             self.memory[-1] = result
         else:
             self.memory.append(result)
+
+        log_operation("subtract", [first, second], result)
 
         return result
 
@@ -89,6 +110,8 @@ class MemoryCalc(BasicCalc):
         else:
             self.memory.append(result)
 
+        log_operation("multiply", [first, second], result)
+
         return result
 
     def divide(self, first, second=None):
@@ -99,7 +122,9 @@ class MemoryCalc(BasicCalc):
         second = validate_number(second)
 
         if second == 0:
-            raise CalculatorZeroDivisionError
+            error = CalculatorZeroDivisionError("Division by zero")
+            log_error("divide", [first, second], error)
+            raise error
 
         result = first / second
 
@@ -107,6 +132,8 @@ class MemoryCalc(BasicCalc):
             self.memory[-1] = result
         else:
             self.memory.append(result)
+
+        log_operation("divide", [first, second], result)
 
         return result
 
