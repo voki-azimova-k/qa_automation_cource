@@ -1,7 +1,6 @@
 import re
 import basic_calc
 
-
 operations = {
     "+": basic_calc.BasicCalc.add,
     "-": basic_calc.BasicCalc.subtract,

@@ -2,7 +2,6 @@ import sys
 import time
 from functools import wraps
 
-
 sys.setrecursionlimit(5000)
 
 
@@ -63,6 +62,7 @@ def factorial_cache_generator(limit):
             result *= number
 
         yield number, result
+
 
 if __name__ == "__main__":
     print("Factorial 100 without cache:")
