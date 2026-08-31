@@ -19,7 +19,13 @@ class BasicCalc:
         return cls._instances[cls]
 
     @staticmethod
-    def add(first, second):
+    def add(first, second=None):
+        if second is None:
+            result = sum(validate_number(item) for item in first)
+            log_operation(operation="add", arguments=list(first), result=result)
+
+            return result
+
         first = validate_number(first)
         second = validate_number(second)
 
@@ -172,3 +178,4 @@ if __name__ == "__main__":
     print("Is it the same instance?", first_calc is second_calc)
     print("First calc id:", id(first_calc))
     print("Second calc id:", id(second_calc))
+   
