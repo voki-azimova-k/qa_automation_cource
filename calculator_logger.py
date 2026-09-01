@@ -1,4 +1,7 @@
 from datetime import datetime
+from pathlib import Path
+
+LOG_FILE = Path(__file__).resolve().parent / "calculator_log.txt"
 
 
 def log_operation(operation, arguments, result):
@@ -6,10 +9,10 @@ def log_operation(operation, arguments, result):
         "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "operation": operation,
         "arguments": arguments,
-        "result": result
+        "result": result,
     }
 
-    with open("calculator_log.txt", "a") as file:
+    with open(LOG_FILE, "a") as file:
         file.write(str(log_entry) + "\n")
 
 
@@ -18,8 +21,8 @@ def log_error(operation, arguments, error):
         "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "operation": operation,
         "arguments": arguments,
-        "error": str(error)
+        "error": str(error),
     }
 
-    with open("calculator_log.txt", "a") as file:
+    with open(LOG_FILE, "a") as file:
         file.write(str(log_entry) + "\n")
