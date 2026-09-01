@@ -39,7 +39,7 @@ class BasicCalc:
         first = validate_number(first)
         second = validate_number(second)
 
-        result = first - second
+        result = first + second
         log_operation(operation="subtract", arguments=[first, second], result=result)
 
         return result
