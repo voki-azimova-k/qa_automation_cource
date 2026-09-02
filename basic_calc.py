@@ -72,7 +72,8 @@ class BasicCalc:
 
 class MemoryCalc(BasicCalc):
     def __init__(self):
-        self.memory = []
+        if not hasattr(self, "memory"):
+            self.memory = []
 
     def add(self, first, second=None):
         if second is None:
@@ -173,9 +174,12 @@ class MemoryCalc(BasicCalc):
 
 if __name__ == "__main__":
     first_calc = MemoryCalc()
+    first_calc.memo_plus(42)
+
     second_calc = MemoryCalc()
 
     print("Is it the same instance?", first_calc is second_calc)
     print("First calc id:", id(first_calc))
     print("Second calc id:", id(second_calc))
+    print("Memory preserved after re-init?", second_calc.memory_top == 42)
    
