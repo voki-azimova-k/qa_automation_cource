@@ -1,0 +1,7 @@
+calculator_log.txt
+report.html
+.pytest_cache/
+htmlcov/
+.coverage
+__pycache__/
+*.pyc
